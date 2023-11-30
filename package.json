@@ -34,10 +34,11 @@
   },
   "scripts": {
     "dev": "tsup src/index.ts --watch",
-    "build": "tsup src/index.ts --minify --format cjs,esm --dts",
+    "build": "tsup src/index.ts --minify",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest run",
+    "ci": "pnpm run lint && pnpm run test && pnpm run build"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.1.1",
