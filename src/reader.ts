@@ -5,8 +5,8 @@ export function createReader(buffer: ArrayBufferLike, fileType: string): IReader
 }
 
 class Reader implements IReader {
-  data: Uint8Array
-  readStrategy: IReadStrategy
+  private data: Uint8Array
+  private readStrategy: IReadStrategy
   constructor(buffer: ArrayBufferLike, fileType: string) {
     this.data = new Uint8Array(buffer)
     switch (fileType) {
