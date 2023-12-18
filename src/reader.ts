@@ -1,4 +1,5 @@
-import type { IReadStrategy, IReader } from './types'
+import type { EdfHeaders, IReadStrategy, IReader, Signal } from './types'
+import { EdfFile } from './types'
 
 export function createReader(buffer: ArrayBufferLike, fileType: string): IReader {
   return new Reader(buffer, fileType)
@@ -30,8 +31,8 @@ class Reader implements IReader {
 }
 
 class EdfStrategy implements IReadStrategy {
-  read(): Promise<any> {
-    return Promise.resolve()
+  async read(): Promise<EdfFile> {
+    return new EdfFile({} as EdfHeaders, new Array<Signal>())
   }
 }
 
