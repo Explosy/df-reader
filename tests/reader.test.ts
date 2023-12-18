@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { createReader } from '../src/reader'
+import { EdfFile } from '../src/types'
 
 describe('reader', () => {
   it('createReaderShouldThrowErrorIfTypeIsUnknown', () => {
@@ -17,5 +18,9 @@ describe('reader', () => {
     expect(() => {
       createReader(new ArrayBuffer(0), 'GDF')
     }).not.toThrow()
+  })
+  it('readMethodShouldReturnEdfFileIfTypeIsEdf', () => {
+    const reader = createReader(new ArrayBuffer(0), 'EDF')
+    expect(reader.read()).resolves.toBeInstanceOf(EdfFile)
   })
 })
