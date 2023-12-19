@@ -6,22 +6,6 @@ export interface IReadStrategy {
   read(): Promise<any>
 }
 
-export class EdfFile {
-  private headers: EdfHeaders
-  private signals: Array<Signal>
-  constructor(headers: EdfHeaders, signals: Array<Signal>) {
-    this.headers = headers
-    this.signals = signals
-  }
-
-  public getHeaders(): EdfHeaders {
-    return this.headers
-  }
-
-  public getSignals(): Array<Signal> {
-    return this.signals
-  }
-}
 export interface EdfHeaders {
   version: string
   localPatientIdentification: string
@@ -39,6 +23,15 @@ export interface EdfHeaders {
   physicalMaximums: Array<number>
   prefilterings: Array<string>
 }
+
+export interface GdfHeaders {
+
+}
+
+export interface BdfHeaders {
+
+}
+
 export interface Signal {
   values: Array<number>
 }
