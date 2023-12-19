@@ -1,12 +1,13 @@
 import type { IReadStrategy, IReader } from './types'
+import { BdfStrategy, EdfStrategy, GdfStrategy } from './strategies'
 
 export function createReader(buffer: ArrayBufferLike, fileType: string): IReader {
   return new Reader(buffer, fileType)
 }
 
 class Reader implements IReader {
-  data: Uint8Array
-  readStrategy: IReadStrategy
+  private data: Uint8Array
+  private readStrategy: IReadStrategy
   constructor(buffer: ArrayBufferLike, fileType: string) {
     this.data = new Uint8Array(buffer)
     switch (fileType) {
@@ -26,23 +27,5 @@ class Reader implements IReader {
 
   async read(): Promise<any> {
     return this.readStrategy.read()
-  }
-}
-
-class EdfStrategy implements IReadStrategy {
-  read(): Promise<any> {
-    return Promise.resolve()
-  }
-}
-
-class BdfStrategy implements IReadStrategy {
-  read(): Promise<any> {
-    return Promise.resolve()
-  }
-}
-
-class GdfStrategy implements IReadStrategy {
-  read(): Promise<any> {
-    return Promise.resolve()
   }
 }
